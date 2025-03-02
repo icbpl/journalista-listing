@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -79,14 +73,6 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -96,6 +82,70 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-journal-background text-journal-text font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-tight;
+  }
+
+  h1 {
+    @apply text-3xl sm:text-4xl md:text-5xl;
+  }
+
+  h2 {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  .journal-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .journal-section {
+    @apply py-12 sm:py-16;
+  }
+
+  .card-image-container {
+    @apply relative overflow-hidden;
+  }
+
+  .card-image-container img {
+    @apply transition-transform duration-500 ease-out;
+  }
+
+  .card-image-container:hover img {
+    @apply scale-105;
+  }
+
+  .image-shimmer {
+    @apply animate-image-shimmer bg-gradient-to-r from-transparent via-white/10 to-transparent bg-[length:1000px_100%];
+  }
+
+  .read-more-link {
+    @apply inline-flex items-center text-sm font-medium text-journal-accent hover:text-journal-text transition-colors duration-200;
+  }
+
+  .article-category {
+    @apply inline-block text-xs uppercase tracking-wide px-2 py-1 bg-black/5 rounded;
+  }
+
+  .slide-in {
+    @apply animate-fade-in;
+  }
+
+  .journal-card {
+    @apply bg-white rounded-md p-5 shadow-sm border border-journal-border hover:shadow-md transition-shadow duration-300;
   }
 }
