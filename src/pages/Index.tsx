@@ -8,6 +8,7 @@ import SectionHeading from '@/components/SectionHeading';
 import CategoryCard from '@/components/CategoryCard';
 import ArticleCard from '@/components/ArticleCard';
 import Footer from '@/components/Footer';
+import AdPlaceholder from '@/components/AdPlaceholder';
 
 import { categories, getLatestArticles, getTechnologyArticles } from '@/lib/data';
 
@@ -62,6 +63,13 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Ad Banner */}
+        <div className="py-4 bg-white">
+          <div className="journal-container">
+            <AdPlaceholder format="leaderboard" />
+          </div>
+        </div>
+
         {/* Latest Articles Section */}
         <section className="journal-section bg-white">
           <div className="journal-container">
@@ -84,6 +92,13 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Ad Rectangle */}
+        <div className="py-8 bg-journal-background">
+          <div className="journal-container">
+            <AdPlaceholder format="rectangle" />
+          </div>
+        </div>
 
         {/* Technology Journals Section */}
         <section className="journal-section bg-journal-background">
@@ -166,6 +181,13 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Bottom Ad Banner */}
+        <div className="py-4 bg-journal-background">
+          <div className="journal-container">
+            <AdPlaceholder format="banner" />
+          </div>
+        </div>
       </main>
       
       <Footer />

@@ -1,9 +1,11 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +21,10 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   return (
     <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-sm shadow-sm' : 'bg-transparent'}`}>
@@ -36,15 +42,62 @@ const Header = () => {
         </nav>
         
         <div className="block md:hidden">
-          <button className="p-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
+          <button 
+            className="p-2 text-journal-text hover:text-journal-accent transition-colors" 
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white shadow-md">
+          <div className="py-3 px-4 space-y-3">
+            <Link 
+              to="/" 
+              className="block text-journal-text hover:text-journal-accent transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/" 
+              className="block text-journal-text hover:text-journal-accent transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Science
+            </Link>
+            <Link 
+              to="/" 
+              className="block text-journal-text hover:text-journal-accent transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Technology
+            </Link>
+            <Link 
+              to="/" 
+              className="block text-journal-text hover:text-journal-accent transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Medicine
+            </Link>
+            <Link 
+              to="/" 
+              className="block text-journal-text hover:text-journal-accent transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Humanities
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
