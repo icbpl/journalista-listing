@@ -33,6 +33,13 @@ const Index = () => {
       <Header />
       
       <main className="flex-grow">
+        {/* High-visibility ad at the top - Mobile only */}
+        <div className="md:hidden py-2 bg-white border-b border-gray-200">
+          <div className="container px-4 mx-auto">
+            <AdPlaceholder format="large-mobile" position="inline" />
+          </div>
+        </div>
+
         {/* Hero Section */}
         <section className="py-12 bg-gray-50 border-b border-gray-200">
           <div className="max-w-5xl mx-auto px-4">
@@ -43,6 +50,11 @@ const Index = () => {
               <p className="text-gray-600 text-sm mb-8">
                 Curated collection of articles to be explored by academic discipline
               </p>
+            </div>
+            
+            {/* Leaderboard ad before categories */}
+            <div className="mb-8">
+              <AdPlaceholder format="leaderboard" position="inline" />
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-gray-200 bg-white">
@@ -58,7 +70,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Latest Articles Section */}
+        {/* Latest Articles Section with sidebar ad */}
         <section className="py-12 bg-white">
           <div className="max-w-5xl mx-auto px-4">
             <SectionHeading 
@@ -66,17 +78,33 @@ const Index = () => {
               subtitle="Our most recent scholarly discoveries across all disciplines"
             />
             
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {loaded && latestArticles.slice(0, 3).map((article, index) => (
-                <ArticleCard key={article.id} article={article} index={index} />
-              ))}
-            </div>
-            
-            <div className="text-center mt-8">
-              <Link to="/" className="inline-flex items-center text-gray-800 hover:text-gray-600 text-sm group">
-                <span className="mr-2">View all articles</span>
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+            <div className="flex flex-col lg:flex-row">
+              {/* Main content */}
+              <div className="lg:w-3/4 lg:pr-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {loaded && latestArticles.slice(0, 4).map((article, index) => (
+                    <ArticleCard key={article.id} article={article} index={index} />
+                  ))}
+                </div>
+                
+                {/* In-feed ad */}
+                <div className="my-8">
+                  <AdPlaceholder format="rectangle" position="inline" />
+                </div>
+                
+                <div className="text-center mt-8">
+                  <Link to="/" className="inline-flex items-center text-gray-800 hover:text-gray-600 text-sm group">
+                    <span className="mr-2">View all articles</span>
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </div>
+              
+              {/* Sidebar ad - Desktop only */}
+              <div className="hidden lg:block lg:w-1/4 pl-6">
+                <AdPlaceholder format="rectangle" position="sidebar" className="mb-6" />
+                <AdPlaceholder format="rectangle" position="sidebar" />
+              </div>
             </div>
           </div>
         </section>
@@ -84,6 +112,12 @@ const Index = () => {
         {/* Featured Articles Section */}
         <section className="py-12 bg-gray-50 border-t border-b border-gray-200">
           <div className="max-w-5xl mx-auto px-4">
+            {/* Native ad placement that looks like content */}
+            <div className="mb-8 p-2 bg-white border border-gray-200">
+              <p className="text-xs text-gray-500 mb-1">SPONSORED</p>
+              <AdPlaceholder format="leaderboard" position="inline" />
+            </div>
+            
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="col-span-1 bg-white p-5 border border-gray-200">
                 <h3 className="text-lg font-serif mb-2">Ecosystems</h3>
@@ -125,11 +159,9 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Ad Banner */}
-        <div className="py-4 bg-white border-b border-gray-200">
-          <div className="max-w-5xl mx-auto px-4">
-            <AdPlaceholder format="leaderboard" />
-          </div>
+        {/* Sticky bottom ad - Mobile only */}
+        <div className="md:hidden sticky bottom-0 z-10 w-full bg-white shadow-md border-t border-gray-200">
+          <AdPlaceholder format="banner" position="sticky-bottom" />
         </div>
 
         {/* Technology Journals Section */}
@@ -138,7 +170,10 @@ const Index = () => {
             <SectionHeading 
               title="Technology Journals" 
               subtitle="Innovation and breakthroughs in computing, engineering, and digital systems"
-            />
+              withAdSpace={true}
+            >
+              <AdPlaceholder format="banner" position="inline" className="hidden lg:block" />
+            </SectionHeading>
             
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {loaded && techArticles.map((article, index) => (
@@ -152,6 +187,11 @@ const Index = () => {
                   </div>
                 </div>
               ))}
+            </div>
+            
+            {/* In-content ad */}
+            <div className="my-8">
+              <AdPlaceholder format="leaderboard" position="inline" />
             </div>
             
             <div className="text-center mt-8">
@@ -210,7 +250,7 @@ const Index = () => {
         {/* Bottom Ad Banner */}
         <div className="py-4 bg-gray-50 border-t border-gray-200">
           <div className="max-w-5xl mx-auto px-4">
-            <AdPlaceholder format="banner" />
+            <AdPlaceholder format="leaderboard" position="inline" />
           </div>
         </div>
       </main>

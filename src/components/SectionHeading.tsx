@@ -7,6 +7,7 @@ interface SectionHeadingProps {
   subtitle?: string;
   className?: string;
   alignment?: 'left' | 'center' | 'right';
+  withAdSpace?: boolean;
 }
 
 const SectionHeading: React.FC<SectionHeadingProps> = ({
@@ -14,6 +15,7 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
   subtitle,
   className,
   alignment = 'center',
+  withAdSpace = false,
 }) => {
   const alignmentClasses = {
     left: 'text-left',
@@ -22,14 +24,27 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
   };
 
   return (
-    <div className={cn('mb-8', alignmentClasses[alignment], className)}>
-      <h2 className="text-2xl font-serif mb-1 font-medium">
-        {title}
-      </h2>
-      {subtitle && (
-        <p className="text-gray-600 text-sm">
-          {subtitle}
-        </p>
+    <div className={cn(
+      'mb-8', 
+      withAdSpace ? 'flex flex-col lg:flex-row lg:items-center lg:justify-between' : '',
+      alignmentClasses[alignment], 
+      className
+    )}>
+      <div className={withAdSpace ? 'mb-4 lg:mb-0' : ''}>
+        <h2 className="text-2xl font-serif mb-1 font-medium">
+          {title}
+        </h2>
+        {subtitle && (
+          <p className="text-gray-600 text-sm">
+            {subtitle}
+          </p>
+        )}
+      </div>
+      {withAdSpace && (
+        <div className="hidden md:block">
+          {/* This is where an ad could be placed next to a section title */}
+          <slot />
+        </div>
       )}
     </div>
   );
