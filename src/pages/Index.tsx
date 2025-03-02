@@ -29,63 +29,51 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
       
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-journal-background py-16 md:py-24">
-          <div className="journal-container">
+        <section className="py-12 bg-gray-50 border-b border-gray-200">
+          <div className="max-w-5xl mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium mb-6 leading-tight">
+              <h1 className="text-3xl font-serif font-medium mb-2">
                 Journal Categories
               </h1>
-              <p className="text-journal-muted text-lg md:text-xl max-w-2xl mx-auto mb-8">
+              <p className="text-gray-600 text-sm mb-8">
                 Curated collection of articles to be explored by academic discipline
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-              {categories.map((category, index) => (
-                <div 
-                  key={category.id} 
-                  className="slide-in"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <CategoryCard 
-                    name={category.name} 
-                    description={category.description} 
-                    articleCount={category.articleCount} 
-                  />
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-gray-200 bg-white">
+              {categories.map((category) => (
+                <CategoryCard 
+                  key={category.id}
+                  name={category.name} 
+                  description={category.description} 
+                  articleCount={category.articleCount} 
+                />
               ))}
             </div>
           </div>
         </section>
 
-        {/* Ad Banner */}
-        <div className="py-4 bg-white">
-          <div className="journal-container">
-            <AdPlaceholder format="leaderboard" />
-          </div>
-        </div>
-
         {/* Latest Articles Section */}
-        <section className="journal-section bg-white">
-          <div className="journal-container">
+        <section className="py-12 bg-white">
+          <div className="max-w-5xl mx-auto px-4">
             <SectionHeading 
               title="Latest Articles" 
               subtitle="Our most recent scholarly discoveries across all disciplines"
             />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {loaded && latestArticles.slice(0, 3).map((article, index) => (
                 <ArticleCard key={article.id} article={article} index={index} />
               ))}
             </div>
             
-            <div className="text-center mt-12">
-              <Link to="/" className="inline-flex items-center text-journal-accent hover:text-journal-text group">
+            <div className="text-center mt-8">
+              <Link to="/" className="inline-flex items-center text-gray-800 hover:text-gray-600 text-sm group">
                 <span className="mr-2">View all articles</span>
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -93,98 +81,135 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Ad Rectangle */}
-        <div className="py-8 bg-journal-background">
-          <div className="journal-container">
-            <AdPlaceholder format="rectangle" />
+        {/* Featured Articles Section */}
+        <section className="py-12 bg-gray-50 border-t border-b border-gray-200">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="col-span-1 bg-white p-5 border border-gray-200">
+                <h3 className="text-lg font-serif mb-2">Ecosystems</h3>
+                <p className="text-xs text-gray-500 mb-1">NEW CONCEPT • JAN 13, 2023</p>
+                <p className="text-sm text-gray-600 mb-3">Fresh research delving into accelerating biodiversity loss across multiple frequency and scale models.</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-500">By Prof. Richard Hamilton</span>
+                  <Link to="/" className="text-xs flex items-center text-gray-800 hover:text-gray-600">Read More</Link>
+                </div>
+              </div>
+
+              <div className="col-span-1 bg-white p-5 border border-gray-200">
+                <h3 className="text-lg font-serif mb-2">CERN</h3>
+                <p className="text-xs text-gray-500 mb-1">UPDATE • APR 18, 2023</p>
+                <p className="text-sm text-gray-600 mb-3">Scientists at CERN have unearthed a new understanding of particle interactions in quantum mechanics.</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-500">By Dr. Lisa Wang</span>
+                  <Link to="/" className="text-xs flex items-center text-gray-800 hover:text-gray-600">Read More</Link>
+                </div>
+              </div>
+
+              <div className="col-span-1 bg-white p-5 border border-gray-200">
+                <h3 className="text-lg font-serif mb-2">Endurance</h3>
+                <p className="text-xs text-gray-500 mb-1">RESEARCH • JUN 30, 2023</p>
+                <p className="text-sm text-gray-600 mb-3">A comprehensive study evaluating the relationship between sleep quality and athletic recovery.</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-500">By Dr. Carlos Martinez</span>
+                  <Link to="/" className="text-xs flex items-center text-gray-800 hover:text-gray-600">Read More</Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center mt-8">
+              <Link to="/" className="inline-flex items-center text-gray-800 hover:text-gray-600 text-sm group">
+                <span className="mr-2">View all Science Journals articles</span>
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Ad Banner */}
+        <div className="py-4 bg-white border-b border-gray-200">
+          <div className="max-w-5xl mx-auto px-4">
+            <AdPlaceholder format="leaderboard" />
           </div>
         </div>
 
         {/* Technology Journals Section */}
-        <section className="journal-section bg-journal-background">
-          <div className="journal-container">
+        <section className="py-12 bg-gray-50">
+          <div className="max-w-5xl mx-auto px-4">
             <SectionHeading 
               title="Technology Journals" 
               subtitle="Innovation and breakthroughs in computing, engineering, and digital systems"
             />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {loaded && techArticles.map((article, index) => (
-                <ArticleCard key={article.id} article={article} index={index} />
+                <div key={article.id} className="bg-white p-5 border border-gray-200">
+                  <p className="text-xs text-gray-500 mb-1">RESEARCH • {article.date}</p>
+                  <h3 className="text-lg font-serif mb-2">{article.title}</h3>
+                  <p className="text-sm text-gray-600 mb-3">{article.excerpt}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-gray-500">By {article.author}</span>
+                    <Link to="/" className="text-xs flex items-center text-gray-800 hover:text-gray-600">Read More</Link>
+                  </div>
+                </div>
               ))}
             </div>
             
-            <div className="text-center mt-12">
-              <Link to="/" className="inline-flex items-center text-journal-accent hover:text-journal-text group">
+            <div className="text-center mt-8">
+              <Link to="/" className="inline-flex items-center text-gray-800 hover:text-gray-600 text-sm group">
                 <span className="mr-2">View all technology articles</span>
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
         </section>
-        
-        {/* Featured Articles Grid */}
-        <section className="journal-section bg-white">
-          <div className="journal-container">
-            <SectionHeading 
-              title="Featured Research" 
-              subtitle="Explore our selection of impactful and innovative studies"
-            />
-            
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2">
-                <div className="journal-card h-full">
-                  <div className="card-image-container mb-4 rounded-md overflow-hidden aspect-video">
-                    <img 
-                      src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1000&q=80" 
-                      alt="Digital humanities research" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="mb-2 flex items-center justify-between">
-                    <span className="article-category">Humanities</span>
-                    <span className="text-xs text-journal-muted">Jun 8, 2023</span>
-                  </div>
-                  <h3 className="text-2xl font-medium mb-2 font-serif">
-                    <Link to="/" className="hover:text-journal-accent">
-                      Digital Humanities: Preserving Cultural Heritage in the Digital Age
-                    </Link>
-                  </h3>
-                  <p className="text-journal-muted mb-4">
-                    How emerging technologies are revolutionizing the preservation, analysis, and accessibility of cultural artifacts and historical materials in ways never before possible.
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-journal-muted">By Prof. Eleanor Davidson</span>
-                    <Link to="/" className="read-more-link">Read More</Link>
-                  </div>
+
+        {/* Humanities Section */}
+        <section className="py-12 bg-white border-t border-gray-200">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+              <div className="col-span-1">
+                <h3 className="text-lg font-serif mb-2">Digital Humanities: Preserving Cultural Heritage</h3>
+                <p className="text-xs text-gray-500 mb-1">RESEARCH • JUN 8, 2023</p>
+                <p className="text-sm text-gray-600 mb-3">How digital technologies are transforming the preservation and study of historical artifacts.</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-500">By Prof. Eleanor Davidson</span>
+                  <Link to="/" className="text-xs flex items-center text-gray-800 hover:text-gray-600">Read More</Link>
                 </div>
               </div>
-              
-              <div className="lg:col-span-1 flex flex-col space-y-6">
-                {loaded && latestArticles.slice(3, 5).map((article) => (
-                  <div key={article.id} className="journal-card h-full flex-grow">
-                    <div className="mb-2 flex items-center justify-between">
-                      <span className="article-category">{article.category}</span>
-                      <span className="text-xs text-journal-muted">{article.date}</span>
-                    </div>
-                    <h3 className="text-lg font-medium mb-2 line-clamp-2 font-serif">
-                      <Link to="/" className="hover:text-journal-accent">{article.title}</Link>
-                    </h3>
-                    <p className="text-sm text-journal-muted mb-4 line-clamp-2">{article.excerpt}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-journal-muted">By {article.author}</span>
-                      <Link to="/" className="read-more-link text-xs">Read More</Link>
-                    </div>
-                  </div>
-                ))}
+
+              <div className="col-span-1">
+                <h3 className="text-lg font-serif mb-2">The Evolution of Linguistic Structures in Social Media</h3>
+                <p className="text-xs text-gray-500 mb-1">ANALYSIS • MAY 22, 2023</p>
+                <p className="text-sm text-gray-600 mb-3">A study on how online communication is influencing language development and usage.</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-500">By Dr. Thomas Klein</span>
+                  <Link to="/" className="text-xs flex items-center text-gray-800 hover:text-gray-600">Read More</Link>
+                </div>
               </div>
+
+              <div className="col-span-1">
+                <h3 className="text-lg font-serif mb-2">Emerging Perspectives in Artificial Consciousness</h3>
+                <p className="text-xs text-gray-500 mb-1">PHILOSOPHY • APR 17, 2023</p>
+                <p className="text-sm text-gray-600 mb-3">Contemporary discussions around the philosophical implications of advanced AI.</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-500">By Prof. Sophie Harris</span>
+                  <Link to="/" className="text-xs flex items-center text-gray-800 hover:text-gray-600">Read More</Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <Link to="/" className="inline-flex items-center text-gray-800 hover:text-gray-600 text-sm group">
+                <span className="mr-2">View all Humanities discipline articles</span>
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
         </section>
 
         {/* Bottom Ad Banner */}
-        <div className="py-4 bg-journal-background">
-          <div className="journal-container">
+        <div className="py-4 bg-gray-50 border-t border-gray-200">
+          <div className="max-w-5xl mx-auto px-4">
             <AdPlaceholder format="banner" />
           </div>
         </div>

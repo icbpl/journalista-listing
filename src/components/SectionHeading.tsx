@@ -22,13 +22,12 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
   };
 
   return (
-    <div className={cn('mb-10 relative', alignmentClasses[alignment], className)}>
-      <h2 className="text-3xl font-serif mb-3 font-medium relative inline-block">
+    <div className={cn('mb-8', alignmentClasses[alignment], className)}>
+      <h2 className="text-2xl font-serif mb-1 font-medium">
         {title}
-        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-journal-accent opacity-20 rounded"></span>
       </h2>
       {subtitle && (
-        <p className="text-journal-muted max-w-2xl mx-auto text-base leading-relaxed">
+        <p className="text-gray-600 text-sm">
           {subtitle}
         </p>
       )}
