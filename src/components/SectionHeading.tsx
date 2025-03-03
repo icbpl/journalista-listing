@@ -8,6 +8,7 @@ interface SectionHeadingProps {
   className?: string;
   alignment?: 'left' | 'center' | 'right';
   withAdSpace?: boolean;
+  children?: React.ReactNode;
 }
 
 const SectionHeading: React.FC<SectionHeadingProps> = ({
@@ -16,6 +17,7 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
   className,
   alignment = 'center',
   withAdSpace = false,
+  children,
 }) => {
   const alignmentClasses = {
     left: 'text-left',
@@ -42,8 +44,8 @@ const SectionHeading: React.FC<SectionHeadingProps> = ({
       </div>
       {withAdSpace && (
         <div className="hidden md:block">
-          {/* This is where an ad could be placed next to a section title */}
-          <slot />
+          {/* This is where an ad can be placed next to a section title */}
+          {children}
         </div>
       )}
     </div>

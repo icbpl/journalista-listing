@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -43,6 +42,10 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --journal-text: #121212;
+    --journal-muted: #595959;
+    --journal-accent: #6E59A5;
   }
 
   .dark {
@@ -106,7 +109,7 @@
   }
 
   a {
-    @apply transition-colors duration-200;
+    @apply transition-colors duration-200 underline underline-offset-2 hover:underline-offset-4;
   }
 
   .journal-container {
@@ -138,7 +141,7 @@
   }
 
   .article-category {
-    @apply inline-block text-xs uppercase tracking-wide px-2 py-1 bg-black/5 rounded;
+    @apply inline-block text-xs uppercase tracking-wide px-2 py-1 bg-black/10 rounded font-medium;
   }
 
   .slide-in {
