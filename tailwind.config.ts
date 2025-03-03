@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -33,9 +32,9 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				journal: {
 					background: '#FAFAFA',
-					text: '#1A1A1A',
-					muted: '#717171',
-					accent: '#9b87f5',
+					text: '#121212',
+					muted: '#595959',
+					accent: '#6E59A5',
 					border: '#E5E5E5',
 				},
 				primary: {
