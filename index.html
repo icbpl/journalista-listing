@@ -11,6 +11,7 @@
     
     <!-- Preload critical assets -->
     <link rel="preload" href="/src/index.css" as="style">
+    <link rel="stylesheet" href="/src/index.css">
     <link rel="preload" href="/src/main.tsx" as="script">
     
     <!-- Inline critical CSS -->
@@ -20,11 +21,32 @@
         font-family: 'Inter', sans-serif;
         background-color: #FAFAFA;
       }
+      
+      /* Add a loading indicator */
+      .app-loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+        font-family: 'Inter', sans-serif;
+      }
     </style>
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Loading fallback -->
+      <div class="app-loading">Loading Journal Archives...</div>
+    </div>
+    
+    <!-- Error handling script -->
+    <script>
+      window.addEventListener('error', function(e) {
+        console.error('Global error caught:', e.error || e.message);
+      });
+    </script>
+    
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx" defer></script>

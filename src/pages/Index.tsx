@@ -13,6 +13,12 @@ import HumanitiesSection from '@/components/sections/HumanitiesSection';
 import BottomAdBanner from '@/components/sections/BottomAdBanner';
 
 const Index = () => {
+  console.log("Index page rendering");
+
+  useEffect(() => {
+    console.log("Index page mounted");
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Header />
